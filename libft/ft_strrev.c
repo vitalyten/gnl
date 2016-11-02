@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 18:27:19 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/10/31 21:43:14 by vtenigin         ###   ########.fr       */
+/*   Created: 2016/09/30 13:41:02 by vtenigin          #+#    #+#             */
+/*   Updated: 2016/09/30 13:45:30 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#include "libft.h"
 
-# define GET_NEXT_LINE_H
-
-# define BUFF_SIZE 1
-
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-
-typedef struct		s_file
+char	*ft_strrev(char *str)
 {
-	char			*str;
-	int				fd;
-	struct s_file	*next;
-}					t_file;
+	char	*s1;
+	char	*s2;
+	char	tmp;
 
-int					get_next_line(const int fd, char **line);
-
-#endif
+	s1 = str;
+	s2 = str + ft_strlen(str) - 1;
+	while (s1 < s2)
+	{
+		tmp = *s1;
+		*s1 = *s2;
+		*s2 = tmp;
+		s1++;
+		s2--;
+	}
+	return (str);
+}

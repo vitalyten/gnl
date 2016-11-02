@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 18:27:19 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/10/31 21:43:14 by vtenigin         ###   ########.fr       */
+/*   Created: 2016/09/27 18:20:33 by vtenigin          #+#    #+#             */
+/*   Updated: 2016/10/01 21:21:10 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#include "libft.h"
 
-# define GET_NEXT_LINE_H
-
-# define BUFF_SIZE 1
-
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-
-typedef struct		s_file
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char			*str;
-	int				fd;
-	struct s_file	*next;
-}					t_file;
+	size_t	i;
+	size_t	j;
+	size_t	res;
 
-int					get_next_line(const int fd, char **line);
-
-#endif
+	i = 0;
+	j = 0;
+	res = ft_strlen(src);
+	while (dst[i] && i < size)
+		i++;
+	while (src[j] && i < size - 1)
+		dst[i++] = src[j++];
+	if (j > 0)
+	{
+		dst[i] = '\0';
+		return (res + i - j);
+	}
+	return (res + i);
+}

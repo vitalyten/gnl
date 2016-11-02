@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtenigin <vtenigin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/26 18:27:19 by vtenigin          #+#    #+#             */
-/*   Updated: 2016/10/31 21:43:14 by vtenigin         ###   ########.fr       */
+/*   Created: 2016/09/23 18:24:48 by vtenigin          #+#    #+#             */
+/*   Updated: 2016/09/24 18:11:41 by vtenigin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
+#include "libft.h"
 
-# define GET_NEXT_LINE_H
-
-# define BUFF_SIZE 1
-
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-
-typedef struct		s_file
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char			*str;
-	int				fd;
-	struct s_file	*next;
-}					t_file;
+	size_t i;
 
-int					get_next_line(const int fd, char **line);
-
-#endif
+	if (len == 0)
+		return (dst);
+	if (src > dst)
+	{
+		i = 0;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		i = len;
+		while (i-- > 0)
+			((char *)dst)[i] = ((char *)src)[i];
+	}
+	return (dst);
+}
